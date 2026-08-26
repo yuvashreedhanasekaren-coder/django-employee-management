@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Employee</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #f8d7cc, #f3c6c6);
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 420px;
+            background: white;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            padding: 12px;
+            background: white;
+        }
+
+        button {
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #6366f1;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #4f46e5;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Add Employee ➕</h1>
+
+    <!-- IMPORTANT: enctype is required for image upload -->
+    <form method="POST"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="emp_id"
+            placeholder="Employee ID"
+            required
+        >
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+        >
+
+        <input
+            type="text"
+            name="designation"
+            placeholder="Designation"
+            required
+        >
+
+        <input
+            type="number"
+            name="experience"
+            placeholder="Experience (Years)"
+            min="0"
+            required
+        >
+
+        <input
+            type="file"
+            name="image"
+            accept="image/*"
+        >
+
+        <button type="submit">
+            Save
+        </button>
+
+    </form>
+
+    <a class="back" href="{% url 'search_options' %}">
+        ← Back to Search
+    </a>
+
+</div>
+
+</body>
+</html>

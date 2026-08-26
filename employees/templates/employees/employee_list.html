@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee List</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(120deg, #6c5ce7, #8e7dff);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #3730a3;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #4f46e5;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background: #f5f6fc;
+        }
+
+        tr:hover {
+            background: #eef0ff;
+        }
+
+        .employee-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #6366f1;
+        }
+
+        .no-image {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            margin: 3px;
+            font-size: 14px;
+        }
+
+        .edit {
+            background: #10b981;
+        }
+
+        .delete {
+            background: #ef4444;
+        }
+
+        .edit:hover {
+            background: #059669;
+        }
+
+        .delete:hover {
+            background: #dc2626;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 12px 25px;
+            background: #6366f1;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .back:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📋 Employee List</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Experience</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for employee in employees %}
+
+            <tr>
+
+                <td>
+
+                    {% if employee.image %}
+
+                        <a
+    href="{{ employee.image.url }}"
+    target="_blank"
+    title="Click to view full image"
+>
+    <img
+        src="{{ employee.image.url }}"
+        alt="{{ employee.name }}"
+        class="employee-image"
+    >
+</a>
+                    {% else %}
+
+                        <div class="no-image">
+                            No Image
+                        </div>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+                    {{ employee.emp_id }}
+                </td>
+
+                <td>
+                    {{ employee.name }}
+                </td>
+
+                <td>
+                    {{ employee.designation }}
+                </td>
+
+                <td>
+                    {{ employee.experience }}
+                </td>
+
+                <td>
+
+                    <a
+                        href="{% url 'edit_employee' employee.emp_id %}"
+                        class="btn edit"
+                    >
+                        ✏ Edit
+                    </a>
+
+                    <a
+                        href="{% url 'delete_employee' employee.emp_id %}"
+                        class="btn delete"
+                    >
+                        🗑 Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="6">
+                    No employees found.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <a
+        href="{% url 'home' %}"
+        class="back"
+    >
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

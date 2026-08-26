@@ -1,0 +1,25 @@
+{% extends 'employees/base.html' %}
+{%load static%}
+{% block content %}
+<style>
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fdce8bff, #ff936fff), 
+                linear-gradient(225deg, #93b9f6ff, #a6e1fcff);
+    background-blend-mode: overlay;
+}
+</style>
+<h2>Search by Employee ID 🔍</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="emp_id" placeholder="Enter Employee ID" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'employees/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fcd9a8ff, #feaf94ff), 
+                linear-gradient(225deg, #445a7dff, #c2e9fb);
+    background-blend-mode: overlay;
+}
+</style>
+<h2>Employee Profile 👤</h2>
+
+<p><strong>ID:</strong> {{ emp.emp_id }}</p>
+<p><strong>Name:</strong> {{ emp.name }}</p>
+<p><strong>Role:</strong> {{ emp.designation }}</p>
+<p><strong>Experience:</strong> {{ emp.experience }} years</p>
+
+<hr>
+
+<p style="text-align:center;">
+    <a href="/">🔍 Search Again</a> |
+    <a href="/add/">➕ Add Employee</a>
+</p>
+{% endblock %}

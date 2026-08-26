@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #ff6a6a, #ffb347);
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.card.danger h2 {
+  color: #dc2626;
+}
+
+.btn-confirm {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-confirm:hover {
+  background: #b91c1c;
+}
+
+.btn-cancel {
+  text-decoration: none;
+  background: #9ca3af;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.btn-cancel:hover {
+  background: #6b7280;
+}

@@ -1,0 +1,28 @@
+{% extends 'employees/base.html' %}
+{%load static%}
+{% block content %}
+<style>
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #d194fdff, #feaf94ff), 
+                linear-gradient(225deg, #97fb97ff, #c2e9fb);
+    background-blend-mode: overlay;
+}
+</style>
+<h2>Search Employee 🔍</h2>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="{% url 'search_by_id' %}">
+        <button>Search by Employee ID</button>
+    </a>
+
+    <a href="{% url 'search_by_role' %}">
+        <button>Search by Role</button>
+    </a>
+</div>
+
+<p style="text-align:center; margin-top:20px;">
+    <a href="/add/">➕ Add New Employee</a>
+</p>
+{% endblock %}

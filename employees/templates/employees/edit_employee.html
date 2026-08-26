@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Employee</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #dbeafe, #c7d2fe);
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 460px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 25px;
+            color: #1f2937;
+        }
+
+        .current-image {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .current-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #6366f1;
+        }
+
+        .current-image p {
+            margin: 8px 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .no-image {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 17px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background: #f9fafb;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #6366f1;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>✏ Edit Employee</h1>
+
+    <div class="current-image">
+
+        {% if emp.image %}
+            <img
+                src="{{ emp.image.url }}"
+                alt="{{ emp.name }}"
+            >
+            <p>Current Image</p>
+        {% else %}
+            <div class="no-image">
+                No current image
+            </div>
+        {% endif %}
+
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Employee ID</label>
+
+        <input
+            type="text"
+            value="{{ emp.emp_id }}"
+            disabled
+        >
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="name"
+            value="{{ emp.name }}"
+            required
+        >
+
+        <label>Designation</label>
+
+        <input
+            type="text"
+            name="designation"
+            value="{{ emp.designation }}"
+            required
+        >
+
+        <label>Experience</label>
+
+        <input
+            type="number"
+            name="experience"
+            value="{{ emp.experience }}"
+            min="0"
+            required
+        >
+
+        <label>Change Image</label>
+
+        <input
+            type="file"
+            name="image"
+            accept="image/*"
+        >
+
+        <button type="submit">
+            Update Employee
+        </button>
+
+    </form>
+
+    <a class="back" href="{% url 'employee_list' %}">
+        ← Back to Employee List
+    </a>
+
+</div>
+
+</body>
+</html>

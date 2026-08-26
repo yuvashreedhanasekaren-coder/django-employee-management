@@ -1,0 +1,25 @@
+{% extends 'employees/base.html' %}
+{%load static%}
+{% block content %}
+<style>
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fcd9a8ff, #feaf94ff), 
+                linear-gradient(225deg, #f36273ff, #edf4dfff);
+    background-blend-mode: overlay;
+}
+</style>
+<h2>Search by Role 🧑‍💼</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="designation" placeholder="Enter Role (e.g. Developer)" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+{% endblock %}
